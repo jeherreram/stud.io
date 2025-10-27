@@ -38,10 +38,10 @@ export async function GET() {
     
     // Group by email type
     const byType: Record<string, any[]> = {};
-    evaluations?.forEach((eval: any) => {
-      const type = eval.user_responses?.prompt?.type || 'unknown';
+    evaluations?.forEach((evaluation: any) => {
+      const type = evaluation.user_responses?.prompt?.type || 'unknown';
       if (!byType[type]) byType[type] = [];
-      byType[type].push(eval);
+      byType[type].push(evaluation);
     });
 
     return NextResponse.json({
@@ -52,8 +52,8 @@ export async function GET() {
       by_type: Object.entries(byType).map(([type, evals]) => ({
         type,
         attempts: evals.length,
-        passed: evals.filter(e => e.passed).length,
-        avg_score: evals.reduce((sum, e) => sum + e.total_points, 0) / evals.length,
+        passed: evals.filter((e: any) => e.passed).length,
+        avg_score: evals.reduce((sum: number, e: any) => sum + e.total_points, 0) / evals.length,
       })),
       recent_evaluations: evaluations?.slice(0, 10),
     });
