@@ -83,7 +83,7 @@ export default function LoginPage() {
               {loading ? 'Logging in...' : 'Login'}
             </Button>
             <Link href="/auth/register" className="text-sm text-muted-foreground hover:underline">
-              Don't have an account? Sign up
+              Don&apos;t have an account? Sign up
             </Link>
           </CardFooter>
         </form>
