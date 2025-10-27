@@ -46,7 +46,7 @@ export async function GET() {
 
     return NextResponse.json({
       total_attempts: totalAttempts,
-      total_passed,
+      total_passed: totalPassed,
       pass_rate: totalAttempts > 0 ? (totalPassed / totalAttempts) * 100 : 0,
       avg_score: avgScore,
       by_type: Object.entries(byType).map(([type, evals]) => ({
