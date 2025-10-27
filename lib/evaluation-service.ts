@@ -135,7 +135,8 @@ Provide your evaluation in the exact JSON format specified. Be thorough but fair
     } catch (parseError) {
       console.error('JSON parse error:', parseError);
       console.error('Failed to parse:', jsonString.substring(0, 500));
-      throw new Error(`Failed to parse Claude response: ${parseError.message}`);
+      const errorMessage = parseError instanceof Error ? parseError.message : 'Unknown parse error';
+      throw new Error(`Failed to parse Claude response: ${errorMessage}`);
     }
   } catch (error: any) {
     console.error('Evaluation error:', error);
